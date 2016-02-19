@@ -1,8 +1,72 @@
-# BlueSpurs Spring Starter Kit
+# BlueSpurs Interview Test
+
+## Task 1
+
+Your task is to create a RESTful web service endpoint that allows a client to input a product name as a GET query parameter and returns the cheapest product.
+
+Provided below are API keys for the BestBuy and Walmart APIs. Your result should return the best (minimum) price for the product and which store to buy it from. If there are multiple products, always return the lowest priced product. For example:
+
+**Request**
+```
+GET /product/search?name=ipad
+```
+
+**Example Response**
+```
+200 OK
+
+{
+    "productName": "iPad Mini",
+    "bestPrice": "150.00",
+    "currency": "CAD",
+    "location": "Walmart"
+}
+```
+
+## Task 2 (optional)
+
+A second optional task is another RESTful web service endpoint that allows a client to input an email address and product name as a JSON object in the HTTP body.
+
+Using the `EmailService`, every time the minimum price decreases for the specified item, send an email to the specified email address indicating that the price has dropped.
+
+**Example Request**
+```
+POST /product/alert
+{
+    "productName": "ipad",
+    "email": "someone@somewhere.com"
+}
+```
+
+**Example Response**
+```
+200 OK
+
+(no response body)
+```
+
+**Example Email**
+```
+Sending email to 'someone@somewhere.com' with subject 'The price of the ipad has dropped!' and message 'The price of the ipad has dropped from 150.00CAD to 148.00CAD! Get it quick!'
+```
+
+*Note that when using the `EmailService`, no emails are actually sent. A string similar to the example email will be logged in the console.*
+
+## Required API Keys
+
+**BestBuy**: `pfe9fpy68yg28hvvma49sc89`
+
+**Walmart**: `rm25tyum3p9jm9x9x7zxshfa`
+
+## When You're Finished...
+
+Commit this project *to your **own** Git repository* on Github or Bitbucket and email us the link to the repository.
+
+# Starter Kit Documentation
 
 **NOTE 1: Commands and file paths in this documentation are relative to the project root unless otherwise specified.**
 
-The starter kit is meant to help quickly get projects up and running for developers. We want to avoid time spent setting up environments and worrying about boilerplate. The goals are:
+This starter kit is meant to help quickly get projects up and running for developers. We want to avoid time spent setting up environments and worrying about boilerplate. The goals are:
 
 - Reduce project start-up friction.
 - Introduce a common base for all projects.
@@ -27,33 +91,14 @@ The starter kit is meant to help quickly get projects up and running for develop
 - Logging using SLF4J.
 - Test code coverage reporting.
 
-### Contributions
-
-Contributions to the starter kit are encouraged and welcomed. To contribute a change, just make a new branch, make your changes, and issue a pull request. The senior developer guild will review your change and merge it.
-
-#### Wish List
-
-If you want to contribute new additions to the starter kit, there are some items that are on the wish list:
-
-- JSON Web Token (JWT) based authentication.
-- Email server integration.
-- Multi-project Gradle configuration.
-- Lombok.
-- Automatic REST API documentation generation.
-- Password reset
-- Generation tool - CLI to pick and choose components
-- Docker Integration
-- Style Checker
-
 # Getting Started
 
 ## What You Need
 
-To get started, you'll need 3 things:
+To get started, you'll need 2 things:
 
 1. The Java JDK (development kit) version 1.8.
-2. MySQL or MariaDB (latest).
-3. The text editor or IDE of your choice.
+2. The text editor or IDE of your choice.
 
 Additional setup instructions are provided for IntelliJ IDEA and Eclipse. (You can contribute your own setup instructions for other IDEs!)
 
@@ -70,12 +115,6 @@ To run the project, issue the command `./gradlew bootRun` (on Windows, omit `./`
 ## Running Tests
 
 You can run tests using gradle by executing `./gradlew cleanTest test`. To generate a code coverage report, run `./gradlew jacocoTestReport`.
-
-## Generating SonarQube Reports
-
-[SonarQube](http://www.sonarqube.org) is an open source project designed to measure code quality. The application must be installed locally in order to generate and report against code quality metrics.
-
-- To analyze the code with SonarQube run `./gradlew clean build sonarqube`
 
 ## Running the Project in IntelliJ
 
@@ -202,6 +241,8 @@ ajax({
 .fail(function(response) { ... })
 .always(function() { ... });
 ```
+
+For testing, Postman (a Google Chrome extension) is useful for making API calls.
 
 ## Making Database Schema Changes
 
