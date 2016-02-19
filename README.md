@@ -80,7 +80,6 @@ This starter kit is meant to help quickly get projects up and running for develo
 - Liquibase database migrations and changeset generation based on JPA entity changes.
 - Hibernate as the JPA vendor.
 - Input validation using the Hibernate Validator.
-- MySQL support by default, configurable to use almost any RDBMS.
 - Unit and integration tests.
 - In-memory caching by default, configurable to use other providers such as Redis, Memcache, or EhCache.
 - Cross-origin resource sharing (CORS) enabled by default.
@@ -104,7 +103,7 @@ Additional setup instructions are provided for IntelliJ IDEA and Eclipse. (You c
 
 ## Configuring and Running the Project
 
-Configuration values can be found in the `src/main/resources/application.properties` file. For a development environment, these defaults should work out of the box. If you configured MySQL to use a password, then you will need to configure it here.
+Configuration values can be found in the `src/main/resources/application.properties` file. For a development environment, these defaults should work out of the box.
 
 **NOTE 2: Do NOT commit your database password to source control!**
 
