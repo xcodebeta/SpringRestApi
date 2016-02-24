@@ -97,13 +97,11 @@ To get started, you'll need 2 things:
 1. The Java JDK (development kit) version 1.8.
 2. The text editor or IDE of your choice.
 
-Additional setup instructions are provided for IntelliJ IDEA and Eclipse. (You can contribute your own setup instructions for other IDEs!)
+Additional setup instructions are provided for IntelliJ IDEA and Eclipse.
 
 ## Configuring and Running the Project
 
 Configuration values can be found in the `src/main/resources/application.properties` file. For a development environment, these defaults should work out of the box.
-
-**NOTE 2: Do NOT commit your database password to source control!**
 
 ## Running the Development Server
 
