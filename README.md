@@ -66,7 +66,7 @@ Commit this project *to your **own** Git repository* on Github or Bitbucket and 
 
 **NOTE 1: Commands and file paths in this documentation are relative to the project root unless otherwise specified.**
 
-This starter kit is meant to help quickly get projects up and running for developers. We want to avoid time spent setting up environments and worrying about boilerplate. The goals are:
+This starter kit is an example of the systems we use at BlueSpurs. We want to avoid time spent setting up environments and worrying about boilerplate. The goals are:
 
 - Reduce project start-up friction.
 - Introduce a common base for all projects.
@@ -80,13 +80,10 @@ This starter kit is meant to help quickly get projects up and running for develo
 - Liquibase database migrations and changeset generation based on JPA entity changes.
 - Hibernate as the JPA vendor.
 - Input validation using the Hibernate Validator.
-- MySQL support by default, configurable to use almost any RDBMS.
-- Unit and integration tests.
+- Unit tests.
 - In-memory caching by default, configurable to use other providers such as Redis, Memcache, or EhCache.
 - Cross-origin resource sharing (CORS) enabled by default.
 - Spring projects including Boot, Data, Security, Devtools, and HATEOAS.
-- A basic user system (registration, login, update profile, directory).
-- HTTP Basic authentication.
 - Tomcat hooks for WAR container deployment.
 - Logging using SLF4J.
 - Test code coverage reporting.
@@ -135,11 +132,6 @@ From the start screen, follow these steps:
     - Name it `Unit Tests`.
     - Set the test kind to `Category`.
     - Set the category to `com.bluespurs.starterkit.IntegrationTest`.
-    - Set the search to `Whole project`.
-7. Create a new configuration and choose `JUnit`.
-    - Name it `Integration Tests`.
-    - Set the test kind to `Category`.
-    - Set the category to `com.bluespurs.starterkit.UnitTest`.
     - Set the search to `Whole project`.
 
 Now that the run configurations are set up, you can run or debug the application and it's tests. Once the development server is running, it is not necessary to reboot it after every change. Simply recompile the project (`Build -> Make Project` or `Ctrl-F9`) and the changes will be reloaded.
@@ -212,16 +204,6 @@ In many Java applications (not exclusive to Spring), it is common to see a 3-tie
 
 You may have noticed that this is a layered architecture. For example, controllers should not talk to repositories directly. Layers should only communicate with those directly above or below it. This, of course, is a *pattern* not a rule.
 
-## Common Anti-patterns to Avoid
-
-**NOTE 3: Anti-patterns are a sensitive subject because they are tied closely to opinion. In fact, some people argue that using design patterns *at all* is an anti-pattern because not enough abstraction was provided.**
-
-The following anti-patterns are code that is typically found in software, but lead to unmaintainable, highly coupled, less cohesive, or issue-prone code.
-
-- **God object (or BaseBean, or CallSuper)** is an anti-pattern in which objects have too much responsibility or know too much information. God objects violate the single responsibility principle. Instead, use composition.
-    - Beware of any class name starting with `Base`. `Base` objects typically provide methods to child classes that model disjoint problems and therefore lead to a bloated, less cohesive object hierarchy. Remember that composition is more flexible than inheritance.
-- **Interface bloat** is an anti-pattern that arises when an interface becomes too powerful (defines too many methods) that end up making it difficult or impossible to implement for more than one concrete implementation.
-
 # Development Topics
 
 ## Consuming from the Client Side
@@ -253,48 +235,6 @@ For the most part, the database schema will be managed by Liquibase. Liquibase u
 3. Once content with the changes, run `./gradlew diffChangeLog`. This writes schema changes to the Liquibase changelog located in `src/main/resources/db-changelog.xml`.
 4. Make sure the changes discovered by Liquibase meet your expectations.
 5. Run Liquibase by re-compiling your project with the development server running, or by using gradle.
-
-## Accessing the Currently Authenticated User
-
-Getting the currently authenticated user who is making the request can be done at any layer, but is typically done in the controller layer and passed down. To access this information, simply inject the `CurrentUser` instance using Spring's `@Autowire` annotation at the member or constructor level.
-
-```java
-@Autowired
-private CurrentUser currentUser;
-.
-.
-.
-public void someMethod() {
-    if(currentUser.isAuthenticated()) {
-        User user = currentUser.get();
-    }
-}
-```
-
-Calling `CurrentUser#get()` when the user is not authenticated throws a `SecurityException`.
-
-## Restricting Access to Specific Roles
-
-[Spring Security](http://projects.spring.io/spring-security/) has an annotation, `@Secured`, for this purpose. Any method that needs a certain privilege to run can be annotated. If the user does not supply credentials to a secured method, Spring will terminate the request and generate an HTTP 401 Unauthorized response. If credentials are supplied but the user does not have the permission (role) required to access the method, Spring will terminate the request and generate an HTTP 403 Forbidden response.
-
-The starter kit has 2 predefined roles: User and Admin.
-
-```java
-@RestController
-class MyController {
-    @Secured({ Role.USER })
-    public String onlyUsers() {
-        return "Only users can access this method.";
-    }
-
-    @Secured({ Role.ADMIN })
-    public String onlyAdmins() {
-        return "Only admins can access this method.";
-    }
-}
-```
-
-`@Secured` can be used on controllers, services, or repositories.
 
 ## Validating User Input
 
@@ -330,8 +270,6 @@ class MyController {
 ```
 
 If validation fails, Spring will terminate the request and generate an HTTP 400 Bad Request response.
-
-# Deployment Topics
 
 ## Generating a WAR
 
