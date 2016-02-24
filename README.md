@@ -101,7 +101,7 @@ Additional setup instructions are provided for IntelliJ IDEA and Eclipse. (You c
 
 ## Configuring and Running the Project
 
-Configuration values can be found in the `src/main/resources/application.properties` file. For a development environment, these defaults should work out of the box. If you configured MySQL to use a password, then you will need to configure it here.
+Configuration values can be found in the `src/main/resources/application.properties` file. For a development environment, these defaults should work out of the box.
 
 **NOTE 2: Do NOT commit your database password to source control!**
 
