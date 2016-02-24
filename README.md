@@ -111,7 +111,7 @@ To run the project, issue the command `./gradlew bootRun` (on Windows, omit `./`
 
 ## Running Tests
 
-You can run tests using gradle by executing `./gradlew cleanTest test`. To generate a code coverage report, run `./gradlew jacocoTestReport`.
+You can run tests using gradle by executing `./gradlew cleanTest test`.
 
 ## Running the Project in IntelliJ
 
@@ -131,7 +131,7 @@ From the start screen, follow these steps:
 6. Create a new configuration and choose `JUnit`.
     - Name it `Unit Tests`.
     - Set the test kind to `Category`.
-    - Set the category to `com.bluespurs.starterkit.IntegrationTest`.
+    - Set the category to `com.bluespurs.starterkit.UnitTest`.
     - Set the search to `Whole project`.
 
 Now that the run configurations are set up, you can run or debug the application and it's tests. Once the development server is running, it is not necessary to reboot it after every change. Simply recompile the project (`Build -> Make Project` or `Ctrl-F9`) and the changes will be reloaded.
@@ -205,26 +205,6 @@ In many Java applications (not exclusive to Spring), it is common to see a 3-tie
 You may have noticed that this is a layered architecture. For example, controllers should not talk to repositories directly. Layers should only communicate with those directly above or below it. This, of course, is a *pattern* not a rule.
 
 # Development Topics
-
-## Consuming from the Client Side
-
-By default, the starter kit uses [HTTP Basic authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) and has CORS enabled by default. You can interface with the controllers using ajax logic similar to the following (pseudo-code):
-
-```javascript
-ajax({
-    url: '/path/to/controller',
-    method: 'get',
-    type: 'json',
-    headers: {
-        'Authorization': 'Basic ' + btoa(username + ':' + password)
-    }
-})
-.then(function(response) { ... })
-.fail(function(response) { ... })
-.always(function() { ... });
-```
-
-For testing, Postman (a Google Chrome extension) is useful for making API calls.
 
 ## Making Database Schema Changes
 
