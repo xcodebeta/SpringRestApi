@@ -74,8 +74,7 @@ dependencies {
 
     // Google libraries
     compile "com.google.code.gson:gson:$gsonVersion",
-            "com.google.guava:guava:$guavaVersion",
-            "com.google.code.gson:gson:$gsonVersion"
+            "com.google.guava:guava:$guavaVersion"
 
     // Database driver
     runtime "com.h2database:h2:$h2databaseVersion"
