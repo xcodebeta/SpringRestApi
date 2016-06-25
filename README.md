@@ -4,7 +4,7 @@
 
 Your task is to create a RESTful web service endpoint that allows a client to input a product name as a GET query parameter and returns the cheapest product.
 
-Provided below are API keys for the BestBuy and Walmart APIs. Your result should return the best (minimum) price for the product and which store to buy it from. If there are multiple products, always return the lowest priced product. For example:
+Using the provided API keys for the BestBuy and Walmart APIs, your result should return the best (minimum) price for the product and which store to buy it from. If there are multiple products, always return the lowest priced product. For example:
 
 **Request**
 ```
@@ -23,7 +23,13 @@ GET /product/search?name=ipad
 }
 ```
 
-## Task 2 (optional)
+### Required API Keys
+
+**BestBuy**: `pfe9fpy68yg28hvvma49sc89`
+
+**Walmart**: `rm25tyum3p9jm9x9x7zxshfa`
+
+## Task 2 (BONUS)
 
 A second optional task is another RESTful web service endpoint that allows a client to input an email address and product name as a JSON object in the HTTP body.
 
@@ -52,12 +58,6 @@ Sending email to 'someone@somewhere.com' with subject 'The price of the ipad has
 
 *Note that when using the `EmailService`, no emails are actually sent. A string similar to the example email will be logged in the console.*
 
-## Required API Keys
-
-**BestBuy**: `pfe9fpy68yg28hvvma49sc89`
-
-**Walmart**: `rm25tyum3p9jm9x9x7zxshfa`
-
 ## When You're Finished...
 
 Commit this project *to your **own** Git repository* on Github or Bitbucket and email us the link to the repository.
@@ -68,25 +68,21 @@ Commit this project *to your **own** Git repository* on Github or Bitbucket and 
 
 This starter kit is an example of the systems we use at BlueSpurs. We want to avoid time spent setting up environments and worrying about boilerplate. The goals are:
 
-- Reduce project start-up friction.
-- Introduce a common base for all projects.
-- Reduce developer environment dependencies.
-- Standardize deployments.
-- Follow best practices!
+- Introduce a common base for all projects
+- Reduce developer environment dependencies
+- Standardize deployments
+- Follow best practices
 
 ## Key Features
 
-- Gradle build tools.
-- Liquibase database migrations and changeset generation based on JPA entity changes.
-- Hibernate as the JPA vendor.
-- Input validation using the Hibernate Validator.
-- Unit tests.
-- In-memory caching by default, configurable to use other providers such as Redis, Memcache, or EhCache.
-- Cross-origin resource sharing (CORS) enabled by default.
-- Spring projects including Boot, Data, Security, Devtools, and HATEOAS.
-- Tomcat hooks for WAR container deployment.
-- Logging using SLF4J.
-- Test code coverage reporting.
+- Gradle build tools
+- Unit tests
+- In-memory caching by default, configurable to use other providers such as Redis, Memcache, or EhCache
+- Cross-origin resource sharing (CORS) enabled by default
+- Spring projects including Boot, Security, Devtools, and HATEOAS
+- Tomcat hooks for WAR container deployment
+- Logging using SLF4J
+- Test code coverage reporting
 
 # Getting Started
 
@@ -94,10 +90,10 @@ This starter kit is an example of the systems we use at BlueSpurs. We want to av
 
 To get started, you'll need 2 things:
 
-1. The Java JDK (development kit) version 1.8.
-2. The text editor or IDE of your choice.
-
-Additional setup instructions are provided for IntelliJ IDEA and Eclipse.
+1. The Java JDK (development kit) version 1.8
+2. The text editor or IDE of your choice (recommend Eclipse or IntelliJ)
+    - Recommended IDE for use are Eclipse and IntelliJ
+    - Additional setup instructions are provided for each below
 
 ## Configuring and Running the Project
 
@@ -157,7 +153,7 @@ You can now run the application and it's tests.
 
 The Spring Framework uses a variety of design patterns that users should familiarize themselves with in order to take advantage of the framework in full. Spring makes an effort to make itself more manageable by providing Spring Boot. Spring Boot helps developers get started writing production-grade Java applications with very little configuration. Most of the configuration is handled automatically with the ability to be overridden as needed by the developer.
 
-A comprehensive overview of Spring Boot can be found here: [Spring Boot v1.3.2.RELEASE single page documentation](http://docs.spring.io/spring-boot/docs/1.3.2.RELEASE/reference/htmlsingle/)
+A comprehensive overview of Spring Boot can be found here: [Spring Boot v1.3.5.RELEASE single page documentation](http://docs.spring.io/spring-boot/docs/1.3.5.RELEASE/reference/htmlsingle/)
 
 As much as possible, following the [S.O.L.I.D software design principles](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) when developing software leads to systems that, over time, tend to be more extensible and maintainable while removing code smells. Spring embraces such principles.
 
@@ -170,10 +166,6 @@ A brief description of the technologies used in the starter kit:
 - **REST** (Representation State Transfer) is an architectural style used to build applications that embrace HTTP as the data transport protocol. HATEOAS (Hypermedia as the Engine of Application State) is used for *service discovery* in REST applications.
 - **Gradle** is a *build tool* which manages the compiling/packaging process and other tasks, such as downloading other Java packages (typically JAR files) that are depended on. Spring Boot is one such dependency that is managed by Gradle.
 - **Spring** is a Java framework. It is comprised of many projects (such as Spring Boot or Spring Security) that can be used interchangeably. For example, it is possible to use the Spring Web project without using Spring Boot. Some projects complement other projects, but can be interchanged with other implementations due to the Java Specification Requests (JSR) which set standards for frameworks such as Spring.
-- **JPA** is the *Java Persistence API* which, as the result of a JSR, provides a standard interface for interacting with different database systems. It is important to understand that the JPA is just a specification.
-- **Hibernate** is an implementation of the JPA. Along with other capability, Hibernate offers a concrete implementation of the JPA. There are other implementations such as EclipseLink. In Java terms: if the JPA is the interface, then Hibernate is the class.
-- **Spring Data** is an abstraction of the JPA. Because the JPA is complex, the Spring Framework offers a project called Spring Data which offers an easier-to-use API for working with the JPA. *Repositories* (explained later) are an example of this abstraction.
-- **Liquibase** is a utility used for making changes to the database. In production, managing changes to the database is tricky. Liquibase makes such changes standardized and manageable.
 
 If you're new to these technologies, it is important to understand their respective roles in the development process.
 
@@ -186,7 +178,7 @@ If you're new to these technologies, it is important to understand their respect
     - [The IoC Container and Beans - Spring Documentation](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html)
 - **Data Transfer Objects** (DTO): A simple method of representing data to be transferred from one system to another (common prior to serialization). This starter kit uses the DTO pattern in two places: input and output. Input classes are stored in `com.bluespurs.starterkit.controller.request` and classes are stored in `com.bluespurs.starterkit.controller.resource`. These classes are only used to transfer data into and out of the system.
     - [Data Transfer Object - Patterns of Enterprise Application Architecture - Martin Fowler](http://martinfowler.com/eaaCatalog/dataTransferObject.html)
-- **Repositories and Specifications**: Repositories are a domain-specific (business-specific) abstraction to *Data Access Objects* (DAO), a common design pattern for CRUD (create, read, update, delete) operations on a database. Because we use the JPA to manage low-level data access, we avoid the need for DAO which allows us to think about software in a more domain-oriented sense. Specifications are simple objects used to locate data in a decoupled, reusable manor.
+- **Repositories and Specifications**: Repositories are a domain-specific (business-specific) abstraction to *Data Access Objects* (DAO), a common design pattern for CRUD (create, read, update, delete) operations on a database.
     - [What is the difference between DAO and Repository patterns? - Stack Overflow](http://stackoverflow.com/questions/8550124/what-is-the-difference-between-dao-and-repository-patterns)
     - [Repository - Patterns of Enterprise Application Architecture - Martin Fowler](http://martinfowler.com/eaaCatalog/repository.html)
 
@@ -198,21 +190,11 @@ In many Java applications (not exclusive to Spring), it is common to see a 3-tie
 
 - **Controllers** handle I/O and talk to *services*.
 - **Services** perform business logic (including transactional work and caching) and talk to *repositories*.
-- **Repositories** manage data access in a domain context and talk to the *DAO*. Because our DAO is provided by the JPA, our layering stops here.
+- **Repositories** manage data access in a domain context and talk to the *DAO*.
 
 You may have noticed that this is a layered architecture. For example, controllers should not talk to repositories directly. Layers should only communicate with those directly above or below it. This, of course, is a *pattern* not a rule.
 
 # Development Topics
-
-## Making Database Schema Changes
-
-For the most part, the database schema will be managed by Liquibase. Liquibase uses JPA entity annotations to construct a schema that will work with your domain objects. Because of this, making schema changes has a typical workflow:
-
-1. Make your changes to the classes inside `com.bluespurs.starterkit.domain`. Be sure to include the appropriate annotations and include mutation methods.
-2. Use your modified domain objects as if the schema exists to build your feature.
-3. Once content with the changes, run `./gradlew diffChangeLog`. This writes schema changes to the Liquibase changelog located in `src/main/resources/db-changelog.xml`.
-4. Make sure the changes discovered by Liquibase meet your expectations.
-5. Run Liquibase by re-compiling your project with the development server running, or by using gradle.
 
 ## Validating User Input
 
